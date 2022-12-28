@@ -3,9 +3,9 @@ import { db } from '../services/firebase.js';
 
 const recordEvent = async (events = []) => {
   const lineContext = {
-    userId: events.source.userId,
+    userId: events[0].source.userId,
     time: Date.now(),
-    message: events.message.text,
+    message: events[0].message.text,
   };
   console.log(lineContext);
 
