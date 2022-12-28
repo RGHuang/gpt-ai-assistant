@@ -1,5 +1,5 @@
 import express from 'express';
-import { handleEvents, printPrompts, settings } from '../app/index.js';
+import { handleEvents, printPrompts, settings, recordEvent } from '../app/index.js';
 import config from '../config/index.js';
 import { validateLineSignature } from '../middleware/index.js';
 
@@ -22,6 +22,7 @@ app.get('/', (req, res) => {
 app.post(config.APP_WEBHOOK_PATH, validateLineSignature, async (req, res) => {
   try {
     await handleEvents(req.body.events);
+    await recordEvent(req.body.events);
     res.sendStatus(200);
   } catch (err) {
     console.error(err);
