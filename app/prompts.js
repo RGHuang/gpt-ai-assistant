@@ -1,5 +1,5 @@
-import { t } from '../languages/index.js';
-import { PARTICIPANT_AI } from '../services/openai.js';
+import { t } from "../languages/index.js";
+import { PARTICIPANT_AI } from "../services/openai.js";
 
 const MAX_LINE_COUNT = 16;
 
@@ -7,9 +7,7 @@ class Prompt {
   lines = [];
 
   constructor() {
-    this
-      .write(`${PARTICIPANT_AI}: `)
-      .write(t('__COMPLETION_INIT_MESSAGE'));
+    this.write(`${PARTICIPANT_AI}: `).write(t("__COMPLETION_INIT_MESSAGE"));
   }
 
   write(text) {
@@ -21,7 +19,7 @@ class Prompt {
   }
 
   toString() {
-    return this.lines.join('');
+    return this.lines.join("");
   }
 }
 
@@ -50,12 +48,13 @@ const removePrompt = (userId) => {
 
 const printPrompts = () => {
   if (Array.from(prompts).length < 1) return;
-  console.info(Array.from(prompts).map(([id, prompt]) => `=== ${id.slice(0, 6)} ===\n\n${prompt.toString()}\n`).join('\n'));
+  console.info(
+    Array.from(prompts)
+      .map(
+        ([id, prompt]) => `=== ${id.slice(0, 6)} ===\n\n${prompt.toString()}\n`
+      )
+      .join("\n")
+  );
 };
 
-export {
-  getPrompt,
-  setPrompt,
-  removePrompt,
-  printPrompts,
-};
+export { getPrompt, setPrompt, removePrompt, printPrompts };
