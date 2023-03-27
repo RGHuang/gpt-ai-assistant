@@ -27,7 +27,6 @@ instance.interceptors.request.use((c) => {
 const createCompletion = ({
   model = config.OPENAI_COMPLETION_MODEL,
   prompt,
-  suffix = '###',
   temperature = config.OPENAI_COMPLETION_TEMPERATURE,
   maxTokens = config.OPENAI_COMPLETION_MAX_TOKENS,
   frequencyPenalty = config.OPENAI_COMPLETION_FREQUENCY_PENALTY,
@@ -37,11 +36,9 @@ const createCompletion = ({
   ],
 }) => {
   console.log('prompt', prompt);
-  console.log('suffix', suffix);
   return instance.post('/v1/completions', {
     model,
     prompt,
-    suffix,
     temperature,
     max_tokens: maxTokens,
     frequency_penalty: frequencyPenalty,

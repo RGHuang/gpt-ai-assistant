@@ -39,8 +39,6 @@ const execChatCommand = async (context) => {
     const { text, isFinishReasonStop } = await generateCompletion({ prompt: prompt.toString() });
     prompt.write(text);
     setPrompt(context.userId, prompt);
-    const actions = isFinishReasonStop ? [] : [new MessageAction(COMMAND_CONTINUE)];
-    context.pushText(text, actions);
   } catch (err) {
     context.pushError(err);
   }
