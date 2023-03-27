@@ -27,17 +27,18 @@ instance.interceptors.request.use((c) => {
 const createCompletion = ({
   model = config.OPENAI_COMPLETION_MODEL,
   prompt,
+  suffix = ' ###',
   temperature = config.OPENAI_COMPLETION_TEMPERATURE,
   maxTokens = config.OPENAI_COMPLETION_MAX_TOKENS,
   frequencyPenalty = config.OPENAI_COMPLETION_FREQUENCY_PENALTY,
   presencePenalty = config.OPENAI_COMPLETION_PRESENCE_PENALTY,
   stop = [
-    ` ${PARTICIPANT_AI}:`,
-    ` ${PARTICIPANT_HUMAN}:`,
+    ' END',
   ],
 }) => instance.post('/v1/completions', {
   model,
   prompt,
+  suffix,
   temperature,
   max_tokens: maxTokens,
   frequency_penalty: frequencyPenalty,

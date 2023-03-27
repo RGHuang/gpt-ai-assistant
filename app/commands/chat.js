@@ -33,10 +33,8 @@ const isChatCommand = (context) => context.hasCommand(COMMAND_CHAT) || isActivat
 const execChatCommand = async (context) => {
   const input = context.event.trimmedText;
   const prompt = getPrompt(context.userId);
-  prompt
-    .write(`\n${PARTICIPANT_HUMAN}: `)
-    .write(`${input}？`)
-    .write(`\n${PARTICIPANT_AI}: `);
+  prompt.write(`${input} ###`);
+
   try {
     const { text, isFinishReasonStop } = await generateCompletion({ prompt: prompt.toString() });
     prompt.write(text);
