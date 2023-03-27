@@ -29,6 +29,7 @@ const generateCompletion = async ({
 }) => {
   if (config.APP_ENV !== 'production') return new Completion({ text: 'OK!' });
   const { data } = await createCompletion({ prompt });
+  console.log('data', data);
   const [choice] = data.choices;
   return new Completion({
     text: choice.text.trim(),
